@@ -1,0 +1,4 @@
+node_modules/*
+.hidden/*
+.tmp/*
+.credentials/*
