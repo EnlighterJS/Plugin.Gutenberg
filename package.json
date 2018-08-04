@@ -1,0 +1,37 @@
+{
+    "name": "enlighterjs-gutenberg",
+    "description": "an open source syntax highlighter written in pure javascript",
+    "version": "1.0.0",
+    "homepage": "https://enlighterjs.org",
+    "author": {
+        "name": "Andi Dittrich",
+        "url": "https://andidittrich.de"
+    },
+    "license": "MPL-2.0",
+    "repository": "EnlighterJS/EnlighterJS.Gutenberg",
+    "bugs": {
+        "url": "https://github.com/EnlighterJS/EnlighterJS.Gutenberg/issues"
+    },
+    "scripts": {
+        "test": "eslint src/"
+    },
+    "browser": "./dist/enlighterjs.gutenberg.min.js",
+    "devDependencies": {
+        "babel-core": "^6.26.3",
+        "babel-plugin-external-helpers": "^6.22.0",
+        "babel-plugin-transform-react-jsx": "^6.24.1",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-react": "^6.24.1",
+        "fancylog": "^3.1.1",
+        "gulp": "^3.9.1",
+        "gulp-clean-css": "^3.9.4",
+        "gulp-concat-util": "^0.5.5",
+        "gulp-less": "^4.0.1",
+        "gulp-prettyerror": "^1.2.1",
+        "gulp-replace": "^1.0.0",
+        "gulp-uglify": "^3.0.1",
+        "gulp-wrapper": "^1.0.0",
+        "rollup": "^0.63.5",
+        "rollup-plugin-babel": "^3.0.7"
+    }
+}

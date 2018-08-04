@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Enlighter-Gutenberg" default="devcopy" basedir=".">
+
+    <!-- ANT-contrib !-->
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+    <!-- Plugin Test - DEVELOPMENT ONLY -->
+    <target name="devcopy">
+        <!-- Credentials, Host Settings !-->
+        <loadproperties srcFile=".credentials/account.conf" prefix="dev"/>
+
+        <!-- transfer deploy plugin !-->
+        <echo message="Uploading files [Single Site]"/>
+        <scp todir="${dev.user}@${dev.host}:${dev.path}" trust="true" port="${dev.port}"
+             keyfile="${user.home}/${dev.keyfile}">
+            <fileset dir=".">
+                <include name="dist/**"/>
+                <includesfile name="enlighter-gutenberg.php"/>
+            </fileset>
+        </scp>
+    </target>
+
+</project>
