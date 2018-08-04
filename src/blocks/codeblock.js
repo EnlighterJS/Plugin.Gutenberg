@@ -62,10 +62,7 @@ export default {
              // allow transform from RAW DOM <pre> node
             {
                 type: 'raw',
-                isMatch: ( node ) => (
-                    node.nodeName === 'PRE' &&
-                    node.children.length === 1
-                ),
+                selector: 'pre.EnlighterJSRAW',
                 schema: {
                     pre: {
                         children: {
@@ -114,7 +111,7 @@ export default {
         // use standard Gutenberg PlainText View with custom styles
         return [
             <_Toolbar key="controls">
-            
+
             </_Toolbar>,
 
             // outer container
