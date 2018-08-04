@@ -31,4 +31,10 @@ add_action('enqueue_block_editor_assets', function(){
         array('wp-blocks', 'wp-i18n', 'wp-element'),
         sha1_file(ENLIGHTER_GUTENBERG_PLUGIN_PATH . '/dist/enlighterjs.gutenberg.min.js')
     );
+    wp_enqueue_style(
+        'enlighterjs-gutenberg',
+        ENLIGHTER_GUTENBERG_PLUGIN_URL . 'dist/enlighterjs.gutenberg.min.css',
+        array(),
+        sha1_file(ENLIGHTER_GUTENBERG_PLUGIN_PATH . '/dist/enlighterjs.gutenberg.min.css')
+    );
 });

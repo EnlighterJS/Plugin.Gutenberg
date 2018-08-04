@@ -10,7 +10,7 @@ import _wp from './wp';
 import _codeblock from './blocks/codeblock';
 
 // Register Enlighter Blockcode
-_wp.blocks.registerBlockType( 'enlighter/codeblock', _codeblock);
+_wp.blocks.registerBlockType('enlighter/codeblock', _codeblock);
 
 // static properties
 export const version = '[[VERSION]]';

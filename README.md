@@ -1,6 +1,8 @@
 EnlighterJS Plugin for Gutenberg Editor
 =========================================
 
+![Gutenberg Editor Integration](assets/enlighterjs_gutenberg_test.png)
+
 Usage
 ----------------------------------------------
 

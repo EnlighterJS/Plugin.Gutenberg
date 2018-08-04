@@ -33,12 +33,12 @@ export default {
             source: 'query',
             selector: 'pre.EnlighterJSRAW',
             query: {
-                language:    { source: 'attribute', attribute: 'data-enlighter-language' },
-                theme:       { source: 'attribute', attribute: 'data-enlighter-theme' },
-                highlight:   { source: 'attribute', attribute: 'data-enlighter-highlight' },
-                linenumbers: { source: 'attribute', attribute: 'data-enlighter-linenumbers' },
-                lineoffset:  { source: 'attribute', attribute: 'data-enlighter-lineoffset' },
-                title:       { source: 'attribute', attribute: 'data-enlighter-title' },
+                language:    { source: 'attribute', attribute: 'data-enlighter-language', default: 'generic' },
+                theme:       { source: 'attribute', attribute: 'data-enlighter-theme', default: null },
+                highlight:   { source: 'attribute', attribute: 'data-enlighter-highlight', default: null },
+                linenumbers: { source: 'attribute', attribute: 'data-enlighter-linenumbers', default: null },
+                lineoffset:  { source: 'attribute', attribute: 'data-enlighter-lineoffset', default: null },
+                title:       { source: 'attribute', attribute: 'data-enlighter-title', default: null },
             }
         }
     },
@@ -109,25 +109,28 @@ export default {
     },
 
     // The "edit" property must be a valid function.
-    edit: function blockEdit({attributes, setAttributes, className}){
+    edit: function blockEdit({attributes, setAttributes}){
 
         // use standard Gutenberg PlainText View with custom styles
         return [
             <_Toolbar key="controls">
             
-            <wp.editor.AlignmentToolbar />
             </_Toolbar>,
 
             // outer container
-            <div className={className}>
-                
+            <div className="enlighter-block-wrapper">
+                <div className="enlighter-header">
+                    <div className="enlighter-title">Javascript</div>
+                </div>
                 <_TextEditor
                     value={ attributes.content }
                     onChange={(content) => setAttributes({content})}
                     placeholder="Insert Sourcecode.."
                     aria-label="Code"
                 />
-                <div className="enlighter-footer-label"><small>EnlighterJS Syntax Highlighter</small></div>
+                <div className="enlighter-footer">
+                    <div className="enlighter-footer-label"><strong>EnlighterJS</strong> Syntax Highlighter</div>
+                </div>                
             </div>
         ];
     },

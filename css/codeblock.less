@@ -1,0 +1,49 @@
+@font_family_monospace: Menlo,Consolas,monaco,monospace;
+
+// blocks::enlighter/codeblock
+div[data-type="enlighter/codeblock"] {
+
+
+
+    // editing area
+    textarea.editor-plain-text{
+        font-family: @font_family_monospace;
+        font-size: 14px;
+        color: #23282d;
+        white-space: pre-wrap;
+        background-color: transparent;
+        outline: none !important;
+        box-shadow: none !important;
+        transition: none;
+        // custom color to indicated sourcecode
+        background-color: #f9f9f9;
+        padding: 2px;
+    }
+
+    .enlighter-header{
+
+        .enlighter-title{
+            font-weight: bold;
+        }
+    }
+
+    // hide footer by default
+    .enlighter-footer{
+    }
+
+    // footer label/branding
+    .enlighter-footer-label{
+        text-align: right;
+        font-size: 10px;
+        font-family: @font_family_monospace;
+        color: #23282d;
+        cursor: pointer;
+    }
+
+    &.is-selected{
+        // show EnlighterJS branding on select
+        .enlighter-footer{
+            visibility: visible;
+        }
+    }
+}

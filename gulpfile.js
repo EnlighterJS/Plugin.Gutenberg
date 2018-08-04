@@ -27,7 +27,7 @@ const _rollup = require('rollup');
 const _rollup_babel = require('rollup-plugin-babel');
 
 // default task
-_gulp.task('default', ['library']);
+_gulp.task('default', ['library', 'less']);
 
 // license header prepended to builds
 const licenseHeader = `/*! EnlighterJS Syntax Highlighter Gutenberg Plugin ${_package.version} | Mozilla Public License 2.0 | https://enlighterjs.org */\n`;
@@ -70,19 +70,15 @@ _gulp.task('library', ['es6-transpile'], function(){
         .pipe(_gulp.dest('./dist/'));
 });
 
-// generator to transpile less->css
-function less2css(themes, outputFilename){
-    const themesources = themes.map(function(l){
-        return 'src/themes/' + l + '.less';
-    });
-    
+// LESS to CSS (Base + Themes)- FULL Bundle
+_gulp.task('less', function (){
     // base is always required!
-    return _gulp.src(['src/themes/base.less'].concat(themesources))
+    return _gulp.src(['css/*.less'])
         .pipe(_prettyError())
 
         .pipe(_gulp_less())
         .pipe(_gulp_cleancss())
-        .pipe(_concat(outputFilename + '.min.css'))
+        .pipe(_concat('enlighterjs.gutenberg.min.css'))
 
         // add license header
         .pipe(_wrapper({
@@ -90,17 +86,8 @@ function less2css(themes, outputFilename){
         }))
 
         .pipe(_gulp.dest('dist'));
-}
-
-// LESS to CSS (Base + Themes)- FULL Bundle
-_gulp.task('less-themes-full', function (){
-    return less2css(themelist, 'enlighterjs');
 });
 
-// Single Theme export
-_gulp.task('less-themes-single', function(){
-    return themelist.map(name => less2css([name], 'enlighterjs.' + name));
-});
 
 _gulp.task('watch', ['library', 'less-themes-full', 'webserver'], function(){
     // js, jsx files
