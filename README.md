@@ -3,10 +3,22 @@ EnlighterJS Plugin for Gutenberg Editor
 
 ![Gutenberg Editor Integration](assets/enlighterjs_gutenberg_test.png)
 
+Current Limitations
+----------------------------------------------
+
+* Legacy EnlighterJS code cannot be transformed to blocks by the "Transform to Blocks" utility of the classic editor.  
+**Caused By:** [gutenberg/8648](https://github.com/WordPress/gutenberg/issues/8648)
+* Newly created codeblocks (via Gutenberg) mess up the HTML with unused attributes because of a validation issue.  
+**Caused By:** [gutenberg/8532](https://github.com/WordPress/gutenberg/issues/8532) / [gutenberg/7604](https://github.com/WordPress/gutenberg/issues/7604)
+
 Usage
 ----------------------------------------------
 
-As integral part of the Enlighter WordPress Plugin
+As integral part of the Enlighter WordPress Plugin (future)
+
+Development
+----------------------------------------------
+
 
 License
 ----------------------------------------------

@@ -59,18 +59,40 @@ export default {
    // block element transformation/converting
     transforms: {
         from: [
-             // allow transform from RAW DOM <pre> node
+
+            // allow transform from RAW DOM <pre><code> (legacy syntax highlighting)
+            // higher priority then 'core/preformatted'
+            // automatically applied when transforming from legacy to blocks
             {
                 type: 'raw',
-                selector: 'pre.EnlighterJSRAW',
-                schema: {
-                    pre: {
-                        children: {
-                            '#text': {},
-                        },
-                    }
-                }
+                priority: 4,
+                isMatch: function(node){
+                    return  node.nodeName === 'PRE' &&
+                            node.children.length === 1 &&
+                            node.firstChild.nodeName === 'CODE'
+                },
+                transform: function (node){
+                    // use inner text as content
+                    return _wp.blocks.createBlock('enlighter/codeblock', {content: node.textContent});
+                },
             },
+
+            // allow transform from standard EnlighterJS code to blocks
+            // higher priority then 'core/preformatted'
+            // automatically applied when transforming from legacy to blocks
+            /*
+            {
+                type: 'raw',
+                priority: 4,
+                isMatch: function(node){
+                    return  false;
+                },
+                transform: function (node){
+                    // use inner text as content
+                    return _wp.blocks.createBlock('enlighter/codeblock', {content: node.textContent});
+                },
+            },
+            */
 
             // allow transform from core/code block
             // allow transform from core/preformatted block
@@ -134,7 +156,7 @@ export default {
 
     // render element as html
     save: function blockRender({attributes}){
-        console.log(attributes);
+        console.log("Rendering:", attributes);
         // add enlighterjs related attributes
         return <pre 
             className="EnlighterJSRAW"
