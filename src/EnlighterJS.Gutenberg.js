@@ -6,11 +6,11 @@
 // Copyright 2018 Andi Dittrich <https://andidittrich.de>
 // ----------------------------------------------------------------------
 
-import _wp from './wp';
+import {Blocks} from './wp';
 import _codeblock from './blocks/codeblock';
 
 // Register Enlighter Blockcode
-_wp.blocks.registerBlockType('enlighter/codeblock', _codeblock);
+Blocks.registerBlockType('enlighter/codeblock', _codeblock);
 
 // static properties
 export const version = '[[VERSION]]';

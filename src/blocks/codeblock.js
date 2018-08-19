@@ -6,9 +6,11 @@
 // Copyright 2018 Andi Dittrich <https://andidittrich.de>
 // ----------------------------------------------------------------------
 
-import _wp from '../wp';
+import {Editor, Components, Element, Blocks} from '../wp';
 import _TextEditor from '../components/TextEditor';
-import _Toolbar from '../components/Toolbar';
+import _LanguageMenu from '../components/LanguageMenu';
+import _ThemeMenu from '../components/ThemeMenu';
+import {getLanguageLabel} from '../languages';
 
 // Standard Codeblock
 export default {
@@ -29,17 +31,42 @@ export default {
             source: 'text'
         },
 
-        config: {
-            source: 'query',
-            selector: 'pre.EnlighterJSRAW',
-            query: {
-                language:    { source: 'attribute', attribute: 'data-enlighter-language', default: 'generic' },
-                theme:       { source: 'attribute', attribute: 'data-enlighter-theme', default: null },
-                highlight:   { source: 'attribute', attribute: 'data-enlighter-highlight', default: null },
-                linenumbers: { source: 'attribute', attribute: 'data-enlighter-linenumbers', default: null },
-                lineoffset:  { source: 'attribute', attribute: 'data-enlighter-lineoffset', default: null },
-                title:       { source: 'attribute', attribute: 'data-enlighter-title', default: null },
-            }
+        // Extract EnlighterJS related attributes
+        // use type attribute instead of query for easier handling
+        language: {
+            type: 'attribute',
+            attribute: 'data-enlighter-language', 
+            default: 'generic'
+        },
+
+        theme: {
+            type: 'attribute',
+            attribute: 'data-enlighter-theme', 
+            default: ''
+        },
+
+        highlight: {
+            type: 'attribute',
+            attribute: 'data-enlighter-highlight', 
+            default: ''
+        },
+
+        linenumbers: {
+            type: 'attribute',
+            attribute: 'data-enlighter-linenumbers', 
+            default: ''
+        },
+
+        lineoffset: {
+            type: 'attribute',
+            attribute: 'data-enlighter-lineoffset', 
+            default: ''
+        },
+
+        title: {
+            type: 'attribute',
+            attribute: 'data-enlighter-title', 
+            default: ''
         }
     },
 
@@ -73,13 +100,15 @@ export default {
                 },
                 transform: function (node){
                     // use inner text as content
-                    return _wp.blocks.createBlock('enlighter/codeblock', {content: node.textContent});
+                    return Blocks.createBlock('enlighter/codeblock', {content: node.textContent});
                 },
             },
 
             // allow transform from standard EnlighterJS code to blocks
             // higher priority then 'core/preformatted'
             // automatically applied when transforming from legacy to blocks
+            // @BUG https://github.com/WordPress/gutenberg/issues/8648
+            // @TODO re-enable transform and use attribute matching
             /*
             {
                 type: 'raw',
@@ -101,7 +130,7 @@ export default {
                 type: 'block',
                 blocks: ['core/code', 'core/preformatted', 'core/paragraph'],
                 transform: function ({content}) {
-                    return _wp.blocks.createBlock('enlighter/codeblock', {content});
+                    return Blocks.createBlock('enlighter/codeblock', {content});
                 },
             }
         ],
@@ -112,7 +141,7 @@ export default {
                 type: 'block',
                 blocks: ['core/code'],
                 transform: function ({content}) {
-                    return _wp.blocks.createBlock('core/code', {content});
+                    return Blocks.createBlock('core/code', {content});
                 },
             },
 
@@ -121,25 +150,29 @@ export default {
                 type: 'block',
                 blocks: ['core/preformatted'],
                 transform: function ({content}) {
-                    return _wp.blocks.createBlock('core/preformatted', {content});
+                    return Blocks.createBlock('core/preformatted', {content});
                 },
             }
         ]
     },
 
     // The "edit" property must be a valid function.
-    edit: function blockEdit({attributes, setAttributes}){
+    edit: function ui({attributes, setAttributes}){
 
         // use standard Gutenberg PlainText View with custom styles
-        return [
-            <_Toolbar key="controls">
+        // 
+        return <Element.Fragment>
 
-            </_Toolbar>,
+            <Editor.BlockControls>
+                <Components.Toolbar>
+                    <_LanguageMenu value={attributes.language} onChange={(language) => setAttributes({language})}/>
+                    <_ThemeMenu value={attributes.theme} onChange={(theme) => setAttributes({theme})} />
+                </Components.Toolbar>
+            </Editor.BlockControls>
 
-            // outer container
             <div className="enlighter-block-wrapper">
                 <div className="enlighter-header">
-                    <div className="enlighter-title">Javascript</div>
+                    <div className="enlighter-title">{getLanguageLabel(attributes.language)}</div>
                 </div>
                 <_TextEditor
                     value={ attributes.content }
@@ -149,17 +182,25 @@ export default {
                 />
                 <div className="enlighter-footer">
                     <div className="enlighter-footer-label"><strong>EnlighterJS</strong> Syntax Highlighter</div>
-                </div>                
+                </div>
             </div>
-        ];
+        </Element.Fragment>
+        ;
     },
 
     // render element as html
-    save: function blockRender({attributes}){
-        console.log("Rendering:", attributes);
+    // @BUG https://github.com/WordPress/gutenberg/issues/8532
+    // @TODO use custom validator 
+    save: function render({attributes}){
         // add enlighterjs related attributes
         return <pre 
             className="EnlighterJSRAW"
+            data-enlighter-language={attributes.language}
+            data-enlighter-theme={attributes.theme}
+            data-enlighter-highlight={attributes.highlight}
+            data-enlighter-linenumbers={attributes.linenumbers}
+            data-enlighter-lineoffset={attributes.lineoffset}
+            data-enlighter-title={attributes.title}
             >
             {attributes.content}
             </pre>;

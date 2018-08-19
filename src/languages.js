@@ -6,6 +6,9 @@
 // Copyright 2018 Andi Dittrich <https://andidittrich.de>
 // ----------------------------------------------------------------------
 
-import _wp from '../wp';
+import _editorConfig from './config';
 
-export default _wp.editor.BlockControls
+// get object key by value
+export function getLanguageLabel(lang){
+    return Object.keys(_editorConfig.languages).find(key => _editorConfig.languages[key] === lang);
+}
