@@ -184,6 +184,17 @@ export default {
                     <div className="enlighter-footer-label"><strong>EnlighterJS</strong> Syntax Highlighter</div>
                 </div>
             </div>
+
+            <Editor.InspectorControls>
+                <Components.PanelBody title="Settings">
+                    <Components.ToggleControl
+                        label="Linenumbers"
+                        checked={ attributes.linenumbers }
+                        onChange={(linenumbers) => setAttributes({linenumbers})}
+                    />
+                </Components.PanelBody>
+            </Editor.InspectorControls>
+
         </Element.Fragment>
         ;
     },
