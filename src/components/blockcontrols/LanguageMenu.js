@@ -6,8 +6,8 @@
 // Copyright 2018 Andi Dittrich <https://andidittrich.de>
 // ----------------------------------------------------------------------
 
-import {Components} from '../wp';
-import _editorConfig from '../config';
+import {Components} from '../../wp';
+import _editorConfig from '../../config';
 
 // create a language selection menu
 export default function LanguageMenu({onChange, value}){
@@ -32,7 +32,7 @@ export default function LanguageMenu({onChange, value}){
     // create dropdown menu
     return <Components.DropdownMenu
         className="enlighter-dropdownmenu"
-        icon="format-aside"
+        icon="editor-paste-text"
         label="Select Language"
         controls={languageItemList}
     />

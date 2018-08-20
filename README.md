@@ -10,7 +10,7 @@ Current Limitations
 **Caused By:** [gutenberg/8648](https://github.com/WordPress/gutenberg/issues/8648)
 * Newly created codeblocks (via Gutenberg) mess up the HTML with unused attributes because of a validation issue.  
 **Caused By:** [gutenberg/8532](https://github.com/WordPress/gutenberg/issues/8532) / [gutenberg/7604](https://github.com/WordPress/gutenberg/issues/7604)
-* Inline Syntax Highlighting is not support  
+* Inline Syntax Highlighting is not supported  
 **Caused By:** doesn't match with the Gutenberg Blocks-Only Style..
 
 Usage

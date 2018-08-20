@@ -6,11 +6,11 @@
 // Copyright 2018 Andi Dittrich <https://andidittrich.de>
 // ----------------------------------------------------------------------
 
-import {Components} from '../wp';
-import _editorConfig from '../config';
+import {Components} from '../../wp';
+import _editorConfig from '../../config';
 
 // create a theme selection menu
-export default function ThemeMenu({onChange, value}){
+export default function ThemeSelect({onChange, value}){
 
     // generate dropdown list
     const themeItemList = Object.keys(_editorConfig.themes).map(label => {
@@ -19,20 +19,16 @@ export default function ThemeMenu({onChange, value}){
         const themeIdentifier = _editorConfig.themes[label];
 
         return {
-            title: label,
-
-            // current item active ?
-            isActive: (value === themeIdentifier),
-
-            // passthrough
-            onClick: () => onChange(themeIdentifier)
+            label: label,
+            value: themeIdentifier
         };
     });
 
     // create dropdown menu
-    return <Components.DropdownMenu
-        icon="admin-appearance"
-        label="Select Theme"
-        controls={themeItemList}
+    return <Components.SelectControl
+        label="Theme"
+        value={value}
+        onChange={onChange}
+        options={themeItemList}
     />
 }

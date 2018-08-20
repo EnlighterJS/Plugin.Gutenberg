@@ -8,8 +8,9 @@
 
 import {Editor, Components, Element, Blocks} from '../wp';
 import _TextEditor from '../components/TextEditor';
-import _LanguageMenu from '../components/LanguageMenu';
-import _ThemeMenu from '../components/ThemeMenu';
+import _LanguageMenu from '../components/blockcontrols/LanguageMenu';
+import _LanguageSelect from '../components/inspectorcontrols/LanguageSelect';
+import _ThemeSelect from '../components/inspectorcontrols/ThemeSelect';
 import {getLanguageLabel} from '../languages';
 
 // Standard Codeblock
@@ -17,6 +18,7 @@ export default {
 
     // metadata
     title: 'Enlighter Sourcecode',
+    description: 'Syntax highlighting with EnlighterJS.',
     icon: 'editor-code',
     category: 'formatting',
     keywords: ['code', 'sourcecode', 'enlighter'],
@@ -160,13 +162,11 @@ export default {
     edit: function ui({attributes, setAttributes}){
 
         // use standard Gutenberg PlainText View with custom styles
-        // 
         return <Element.Fragment>
 
             <Editor.BlockControls>
                 <Components.Toolbar>
                     <_LanguageMenu value={attributes.language} onChange={(language) => setAttributes({language})}/>
-                    <_ThemeMenu value={attributes.theme} onChange={(theme) => setAttributes({theme})} />
                 </Components.Toolbar>
             </Editor.BlockControls>
 
@@ -186,7 +186,10 @@ export default {
             </div>
 
             <Editor.InspectorControls>
-                <Components.PanelBody title="Settings">
+                <Components.PanelBody title="Appearance">
+                    <p>Override the global plugin settings of the current block.</p>
+                    <_LanguageSelect value={attributes.language} onChange={(language) => setAttributes({language})} />
+                    <_ThemeSelect value={attributes.theme} onChange={(theme) => setAttributes({theme})} />
                     <Components.ToggleControl
                         label="Linenumbers"
                         checked={ attributes.linenumbers }
