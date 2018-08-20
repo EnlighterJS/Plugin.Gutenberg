@@ -7,7 +7,7 @@
 // ----------------------------------------------------------------------
 
 import {Blocks} from './wp';
-import _codeblock from './blocks/codeblock';
+import _codeblock from './blocks/codeblock/index';
 
 // Register Enlighter Blockcode
 Blocks.registerBlockType('enlighter/codeblock', _codeblock);
