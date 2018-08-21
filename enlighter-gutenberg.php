@@ -3,7 +3,7 @@
     Plugin Name: EnlighterJS Gutenberg
     Plugin URI: https://enlighterjs.org
     Description: DEVELOPMENT PLUGIN - NOT TO BE USED IN PRODUCTION!
-    Version: 0.1-ALPHA1
+    Version: 0.2-ALPHA1
     Author: Andi Dittrich
     Author URI: https://andidittrich.de
     License: GPL-2.0

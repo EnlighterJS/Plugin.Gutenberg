@@ -21,6 +21,9 @@ As integral part of the Enlighter WordPress Plugin (future)
 Development
 ----------------------------------------------
 
+1. Create the plugin directory `wp-content/plugins/enlighter-gutenberg`
+2. Copy `enlighter-gutenberg.php` and `dist/` into this directory
+3. Activate the plugin
 
 License
 ----------------------------------------------
