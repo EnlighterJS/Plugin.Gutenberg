@@ -36,7 +36,7 @@ export default {
         className: false,
 
         // disable html edit mode
-        html: false
+        html: true
     },
 
     // handle deprecated blocks (previous plugin version)

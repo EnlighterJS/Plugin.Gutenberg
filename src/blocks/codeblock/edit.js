@@ -44,7 +44,7 @@ export default function edit({attributes, setAttributes}){
         </div>
 
         <Editor.InspectorControls>
-            <Components.PanelBody title="Appearance">
+            <Components.PanelBody title="Appearance" icon="admin-appearance">
                 <p>Override the global plugin settings of the current block.</p>
                 <_LanguageSelect 
                     value={attributes.language} 
@@ -66,14 +66,19 @@ export default function edit({attributes, setAttributes}){
                     value={attributes.theme} 
                     onChange={(theme) => setAttributes({theme})} 
                 />
-                <Components.ToggleControl
-                    label="Show linenumbers"
-                    checked={ attributes.linenumbers }
+                <Components.RadioControl
+                    label="Linenumbers"
+                    selected={attributes.linenumbers}
+                    options={[
+                        {label: 'Global settings', value: '' },
+                        {label: 'Show', value: 'true' },
+                        {label: 'Hide', value: 'false' }
+                    ]}
                     onChange={(linenumbers) => setAttributes({linenumbers})}
                 />
             </Components.PanelBody>
 
-            <Components.PanelBody title="Codegroup">
+            <Components.PanelBody title="Codegroup" initialOpen={false} icon="excerpt-view">
                 <p>Create a group of multiple codeblocks by setting a unique group identifier.</p>
                 <Components.TextControl
                     label="Title"

@@ -7,20 +7,23 @@
 // ----------------------------------------------------------------------
 
 import {Components} from '../../wp';
-import _editorConfig from '../../config';
+import {getThemes} from '../../config';
 
 // create a theme selection menu
 export default function ThemeSelect({onChange, value}){
 
-    // generate dropdown list
-    const themeItemList = Object.keys(_editorConfig.themes).map(label => {
+    // get themes
+    const themes = getThemes();
 
-        // extract theme identifier
-        const themeIdentifier = _editorConfig.themes[label];
+    // generate dropdown list
+    const themeItemList = Object.keys(themes).map(key => {
+
+        // extract theme label
+        const label = themes[key];
 
         return {
             label: label,
-            value: themeIdentifier
+            value: key
         };
     });
 

@@ -6,9 +6,15 @@
 // Copyright 2018 Andi Dittrich <https://andidittrich.de>
 // ----------------------------------------------------------------------
 
-import _editorConfig from './config';
+import {getLanguages} from './config';
 
 // get object key by value
-export function getLanguageLabel(lang){
-    return Object.keys(_editorConfig.languages).find(key => _editorConfig.languages[key] === lang);
+export function getLanguageLabel(key){
+    const langs = getLanguages();
+
+    if (langs[key]){
+        return langs[key];
+    }else{
+        return 'Unknown language';
+    }
 }

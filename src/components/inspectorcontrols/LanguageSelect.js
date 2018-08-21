@@ -7,20 +7,23 @@
 // ----------------------------------------------------------------------
 
 import {Components} from '../../wp';
-import _editorConfig from '../../config';
+import {getLanguages} from '../../config';
 
 // create a language selection menu
 export default function LanguageSelect({onChange, value}){
 
-    // generate dropdown list
-    const languageItemList = Object.keys(_editorConfig.languages).map(label => {
+    // get language list
+    const languages = getLanguages();
 
-        // extract language identifier
-        const languageIdentifier = _editorConfig.languages[label];
+    // generate dropdown list
+    const languageItemList = Object.keys(languages).map(key => {
+
+        // extract language label
+        const label = languages[key];
 
         return {
             label: label,
-            value: languageIdentifier
+            value: key
         };
     });
 
