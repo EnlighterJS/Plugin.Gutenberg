@@ -56,7 +56,7 @@ _gulp.task('library', ['es6-transpile'], function(){
     return _gulp.src(['.tmp/enlighterjs.gutenberg.js'])
 
         // minify
-        //.pipe(_uglify())
+        .pipe(_uglify())
         .pipe(_concat('enlighterjs.gutenberg.min.js'))
 
         // add license header

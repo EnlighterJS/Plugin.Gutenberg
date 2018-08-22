@@ -28,7 +28,7 @@ add_action('enqueue_block_editor_assets', function(){
     wp_enqueue_script(
         'enlighterjs-gutenberg',
         ENLIGHTER_GUTENBERG_PLUGIN_URL . 'dist/enlighterjs.gutenberg.min.js',
-        array('wp-blocks', 'wp-i18n', 'wp-element'),
+        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components'),
         sha1_file(ENLIGHTER_GUTENBERG_PLUGIN_PATH . '/dist/enlighterjs.gutenberg.min.js')
     );
     wp_enqueue_style(
