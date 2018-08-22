@@ -44,6 +44,11 @@ export default function edit({attributes, setAttributes}){
         </div>
 
         <Editor.InspectorControls>
+            <Components.PanelBody title="BETA Version" icon="megaphone" className="enlighter-panel-betarelease">
+                <p>Please keep in mind that this version of Enlighter Plugin.Gutenberg is still <strong>BETA software</strong> and may have some serious bugs!</p>
+                <p>In case you found a bug, please <a href="https://github.com/EnlighterJS/Plugin.Gutenberg/issues" target="_new">report it on GitHub</a>.</p>
+            </Components.PanelBody>
+
             <Components.PanelBody title="Appearance" icon="admin-appearance">
                 <p>Override the global plugin settings of the current block.</p>
                 <_LanguageSelect 
