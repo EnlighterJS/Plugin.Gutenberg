@@ -25,6 +25,18 @@ Development
 2. Copy `enlighter-gutenberg.php` and `dist/` into this directory
 3. Activate the plugin
 
+**Required Directory Structure**
+
+```
+wp-content/
+   | - plugins/
+   |      | -enlighter-gutenberg/
+   |      |       |- enlighter-gutenberg.php
+   |      |       |- dist/
+   |      |       |      |- enlighterjs.gutenberg.min.css 
+   |      |       |      |- enlighterjs.gutenberg.min.js
+```
+
 License
 ----------------------------------------------
 

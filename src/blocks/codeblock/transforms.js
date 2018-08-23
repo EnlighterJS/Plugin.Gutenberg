@@ -51,6 +51,7 @@ export default {
         // allow transform from core/code block
         // allow transform from core/preformatted block
         // allow transform from core/paragraph block
+        // @TODO remove content formattings (convert to text!)
         {
             type: 'block',
             blocks: ['core/code', 'core/preformatted', 'core/paragraph'],
