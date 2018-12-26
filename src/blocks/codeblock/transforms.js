@@ -32,21 +32,31 @@ export default {
         // allow transform from standard EnlighterJS code to blocks
         // higher priority then 'core/preformatted'
         // automatically applied when transforming from legacy to blocks
-        // @BUG https://github.com/WordPress/gutenberg/issues/8648
-        // @TODO re-enable transform and use attribute matching
-        /*
         {
             type: 'raw',
             priority: 4,
+
+            // match element type PRE and class=EnlighterJSRAW
             isMatch: function(node){
-                return  false;
+                return  node.nodeName === 'PRE' &&
+                        node.className === 'EnlighterJSRAW';
             },
             transform: function (node){
                 // use inner text as content
-                return _wp.blocks.createBlock('enlighter/codeblock', {content: node.textContent});
+                // convert html data-enlighter attributes to block attributes/state
+                return Blocks.createBlock('enlighter/codeblock', {
+                    content:        node.textContent,
+                    language:       node.dataset.enlighterLanguage      || '',
+                    theme:          node.dataset.enlighterTheme         || '',
+                    highlight:      node.dataset.enlighterHighlight     || '',
+                    linenumbers:    node.dataset.enlighterLinenumbers   || '',
+                    lineoffset:     node.dataset.enlighterLineoffset    || '',
+                    title:          node.dataset.enlighterTitle         || '',
+                    group:          node.dataset.enlighterGroup         || ''
+                });
             },
         },
-        */
+        
 
         // allow transform from core/code block
         // allow transform from core/preformatted block
