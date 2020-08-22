@@ -1,7 +1,7 @@
 {
     "name": "enlighterjs-gutenberg",
     "description": "an open source syntax highlighter written in pure javascript",
-    "version": "0.4.0",
+    "version": "1.1.0",
     "homepage": "https://enlighterjs.org",
     "author": {
         "name": "Andi Dittrich",
@@ -17,21 +17,21 @@
     },
     "browser": "./dist/enlighterjs.gutenberg.min.js",
     "devDependencies": {
-        "babel-core": "^6.26.3",
-        "babel-plugin-external-helpers": "^6.22.0",
-        "babel-plugin-transform-react-jsx": "^6.24.1",
-        "babel-preset-env": "^1.7.0",
-        "babel-preset-react": "^6.24.1",
-        "fancylog": "^3.1.1",
-        "gulp": "^3.9.1",
-        "gulp-clean-css": "^3.9.4",
+        "@babel/core": "^7.11.4",
+        "@babel/plugin-transform-react-jsx": "^7.10.4",
+        "@babel/preset-env": "^7.11.0",
+        "@babel/preset-react": "^7.10.4",
+        "fancylog": "^4.0.5",
+        "gulp": "^4.0.2",
+        "gulp-clean-css": "^4.3.0",
         "gulp-concat-util": "^0.5.5",
+        "gulp-header": "^2.0.9",
         "gulp-less": "^4.0.1",
-        "gulp-prettyerror": "^1.2.1",
+        "gulp-prettyerror": "^2.0.0",
         "gulp-replace": "^1.0.0",
         "gulp-uglify": "^3.0.1",
         "gulp-wrapper": "^1.0.0",
-        "rollup": "^0.63.5",
-        "rollup-plugin-babel": "^3.0.7"
+        "rollup": "^2.26.5",
+        "rollup-plugin-babel": "^4.4.0"
     }
 }

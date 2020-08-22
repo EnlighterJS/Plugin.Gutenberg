@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // --
-// Copyright 2016-2018 Andi Dittrich <https://andidittrich.de>
+// Copyright 2016-2020 Andi Dittrich <https://andidittrich.de>
 // ----------------------------------------------------------------------
 
 
@@ -21,13 +21,10 @@ const _gulp_replace = require('gulp-replace');
 const _prettyError = require('gulp-prettyerror');
 const _concat = require('gulp-concat-util');
 const _gulp_cleancss = require('gulp-clean-css');
-const _wrapper = require('gulp-wrapper');
+const _header = require('gulp-header');
 const _uglify = require('gulp-uglify');
 const _rollup = require('rollup');
 const _rollup_babel = require('rollup-plugin-babel');
-
-// default task
-_gulp.task('default', ['library', 'less']);
 
 // license header prepended to builds
 const licenseHeader = `/*! EnlighterJS Syntax Highlighter Gutenberg Plugin ${_package.version} | Mozilla Public License 2.0 | https://enlighterjs.org */\n`;
@@ -50,25 +47,25 @@ _gulp.task('es6-transpile', async function(){
 });
 
 // compress
-_gulp.task('library', ['es6-transpile'], function(){
+_gulp.task('library', _gulp.series('es6-transpile', function(){
 
     // add jquery addon and minify it
-    return _gulp.src(['.tmp/enlighterjs.gutenberg.js'])
+    return _gulp.src(['./.tmp/enlighterjs.gutenberg.js'])
+        .pipe(_prettyError())
 
         // minify
         .pipe(_uglify())
         .pipe(_concat('enlighterjs.gutenberg.min.js'))
 
         // add license header
-        .pipe(_wrapper({
-            header: licenseHeader
-        }))
+        .pipe(_header(licenseHeader))
 
         // add version string
         .pipe(_gulp_replace(/\[\[VERSION]]/g, _package.version))
 
         .pipe(_gulp.dest('./dist/'));
-});
+}));
+
 
 // LESS to CSS (Base + Themes)- FULL Bundle
 _gulp.task('less', function (){
@@ -81,33 +78,10 @@ _gulp.task('less', function (){
         .pipe(_concat('enlighterjs.gutenberg.min.css'))
 
         // add license header
-        .pipe(_wrapper({
-            header: licenseHeader
-        }))
+        .pipe(_header(licenseHeader))
 
         .pipe(_gulp.dest('dist'));
 });
 
-
-_gulp.task('watch', ['library', 'less-themes-full', 'webserver'], function(){
-    // js, jsx files
-    _gulp.watch(['src/**/*.js', 'src/**/*.jsx'], ['library']).on('change', function(event) {
-        _log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    });
-
-    // less files
-    _gulp.watch('src/themes/*.less', ['less-themes-full']).on('change', function(event) {
-        _log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    });
-});
-
-// development webserver
-_gulp.task('webserver', function(){
-    // start development webserver
-    const webapp = _express();
-    webapp.get('/', function(req, res){
-        res.sendFile(_path.join(__dirname, 'Development.html'));
-    });
-    webapp.use(_express.static(_path.join(__dirname, 'dist')));
-    webapp.listen(8888, () => _log('DEV Webserver Online - localhost:8888'));
-});
+// default task
+_gulp.task('default', _gulp.series(['library', 'less']));

@@ -1,15 +1,13 @@
 {
     "plugins": [
-        "external-helpers",
-        ["transform-react-jsx", {
+        ["@babel/plugin-transform-react-jsx", {
             "pragma": "wp.element.createElement"
         }]
     ],
     "presets": [
         [
-            "env",
+            "@babel/preset-env",
             {
-                "modules": false,
                 "targets": {
                     "browsers": [
                         "safari >= 7",
