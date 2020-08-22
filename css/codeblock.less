@@ -3,14 +3,18 @@
 // blocks::enlighter/codeblock
 div[data-type="enlighter/codeblock"] {
 
+    // small border around the whole block
+    border: 1px solid #cccbcb;
+    border-radius: 5px;
+    max-width: 100%;
+    padding: 15px;
 
     // editing area
-    textarea.editor-plain-text{
+    .block-editor-plain-text{
         font-family: @font_family_monospace;
         font-size: 14px;
         color: #23282d;
         white-space: pre-wrap;
-        background-color: transparent;
         outline: none !important;
         box-shadow: none !important;
         transition: none;
@@ -19,6 +23,7 @@ div[data-type="enlighter/codeblock"] {
         padding: 2px;
         direction: ltr;
         text-align: left;
+        border-radius: 0px;
     }
 
     .enlighter-header{
@@ -39,6 +44,9 @@ div[data-type="enlighter/codeblock"] {
 
     // block selected by user
     &.is-selected{
+        .block-editor-plain-text{
+            background-color: #d1d1d1;
+        }
 
     }
 }
@@ -47,17 +55,4 @@ div[data-type="enlighter/codeblock"] {
 // dropdown menu (Block Settings/Toolbar)
 .enlighter-dropdownmenu{
     max-height: 500px;
-}
-
-// beta software notice
-.enlighter-panel-betarelease{
-    background-color: #edeff0;
-
-    .enlighter-panel-betarelease-text{
-        color: #a15b00;
-    }
-
-    button, .components-panel__icon{
-        color: #a10000 !important;
-    }
 }

@@ -9,6 +9,7 @@
 import _edit from './edit';
 import _transforms from './transforms';
 import _attributes from './attributes';
+import { EscapeHtml } from '../../wp';
 
 // Standard Codeblock
 export default {
@@ -29,8 +30,8 @@ export default {
     // extended block support features
     // @see https://wordpress.org/gutenberg/handbook/block-api/#supports-optional
     supports: {
-        // no custom classes
-        customClassName: false,
+        // allow custom classes (>=1.0.0)
+        customClassName: true,
 
         // remove auto generated wrapper classname
         className: false,
@@ -50,10 +51,14 @@ export default {
     // render element as html
     // @BUG https://github.com/WordPress/gutenberg/issues/8532
     // @TODO use custom validator 
-    save: function render({attributes}){
+    save: function render({attributes, className}){
+
+        // generate css class list
+        const cssClasses = 'EnlighterJSRAW' + (className ? ' ' + className : '');
+
         // add enlighterjs related attributes
         return <pre 
-            className="EnlighterJSRAW"
+            className={cssClasses}
             data-enlighter-language={attributes.language}
             data-enlighter-theme={attributes.theme}
             data-enlighter-highlight={attributes.highlight}
@@ -62,7 +67,7 @@ export default {
             data-enlighter-title={attributes.title}
             data-enlighter-group={attributes.group}
             >
-            {attributes.content}
+            { EscapeHtml.escapeEditableHTML(attributes.content) }
             </pre>;
     }
 };

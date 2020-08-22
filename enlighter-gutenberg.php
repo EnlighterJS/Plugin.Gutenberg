@@ -3,7 +3,7 @@
     Plugin Name: EnlighterJS Gutenberg
     Plugin URI: https://enlighterjs.org
     Description: DEVELOPMENT PLUGIN - NOT TO BE USED IN PRODUCTION!
-    Version: 0.2-ALPHA1
+    Version: 0.4-ALPHA1
     Author: Andi Dittrich
     Author URI: https://andidittrich.de
     License: GPL-2.0
@@ -14,7 +14,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // --
-// Copyright 2018 Andi Dittrich <https://andidittrich.de>
+// Copyright 2018-2019 Andi Dittrich <https://andidittrich.de>
 // ----------------------------------------------------------------------
 
 // Development Plugin - NOT TO BE USED IN PRODUCTION!
@@ -28,7 +28,7 @@ add_action('enqueue_block_editor_assets', function(){
     wp_enqueue_script(
         'enlighterjs-gutenberg',
         ENLIGHTER_GUTENBERG_PLUGIN_URL . 'dist/enlighterjs.gutenberg.min.js',
-        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components'),
+        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-rich-text'),
         sha1_file(ENLIGHTER_GUTENBERG_PLUGIN_PATH . '/dist/enlighterjs.gutenberg.min.js')
     );
     wp_enqueue_style(

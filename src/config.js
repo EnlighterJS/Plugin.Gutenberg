@@ -11,10 +11,8 @@ export function getThemes(){
         '': 'Global settings (' + _editorConfig.config.theme + ')'
     };
 
-    // swap key/values 
-    Object.keys(_editorConfig.themes).forEach(label => {
-        themes[_editorConfig.themes[label]] = label;
-    });
+    // add themes from config
+    Object.assign(themes, _editorConfig.themes);
 
     return themes;
 }
@@ -23,10 +21,8 @@ export function getThemes(){
 export function getLanguages(){
     const languages = {};
 
-    // swap key/values 
-    Object.keys(_editorConfig.languages).forEach(label => {
-        languages[_editorConfig.languages[label]] = label;
-    });
+    // add languages from config
+    Object.assign(languages, _editorConfig.languages);
 
     return languages;
 }
