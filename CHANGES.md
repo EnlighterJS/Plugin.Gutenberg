@@ -2,6 +2,7 @@
 
 ### 1.1.0 ###
 
+* Added: inline highlighting support (RichText format)
 * Added: border around Enlighter codeblock (default theme)
 * Changed: updated buildsystem to babel `v7` and gulp `v4`
 * Bugfix: escape sequence were transformed into their characters in recent Gutenberg releases

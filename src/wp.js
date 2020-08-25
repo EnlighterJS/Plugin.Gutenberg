@@ -4,6 +4,7 @@
 export const Editor = wp.editor;
 export const Components = wp.components;
 export const Element = wp.element;
+export const BlockEditor = wp.blockEditor;
 export const Blocks = wp.blocks;
 export const RichText = wp.richText;
 export const EscapeHtml = wp.escapeHtml;
