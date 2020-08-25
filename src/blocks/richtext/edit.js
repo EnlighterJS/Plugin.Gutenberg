@@ -9,7 +9,7 @@
 import {BlockEditor, RichText, Element, Components} from '../../wp';
 import _LanguageSelect from '../../components/inspectorcontrols/LanguageSelect';
 
-class EnlighterInlineCodeEdit extends Element.Component{
+export default class EnlighterInlineCodeEdit extends Element.Component{
     constructor(...args){
         super(...args);
     }
@@ -62,24 +62,29 @@ class EnlighterInlineCodeEdit extends Element.Component{
                     />
                 </BlockEditor.BlockFormatControls>
                 { this.props.isActive && 
-                    <Components.Popover position="bottom center" anchorRef={anchorRef}>
-                        <_LanguageSelect 
-                            value={currentLanguage}
-                            onChange={this.onChangeLanguage.bind(this)}
-                        />
+                    <Components.Popover position="bottom center" anchorRef={anchorRef} className="enlighter-popover-inline">
+                        <div className="enlighter-popover-content">
+                            <_LanguageSelect 
+                                value={currentLanguage}
+                                onChange={this.onChangeLanguage.bind(this)}
+                            />
+                            <div className="enlighter-popover-buttons">
+                                <Components.Button 
+                                    isSecondary={true}
+                                    isSmall={true}
+                                    onClick={this.toggleFormatting.bind(this)}
+                                >Clear</Components.Button>
+                            </div>
+                        </div>
+                        <div className="enlighter-popover-footer">
+                            <small>EnlighterJS Syntax Highlighter</small>
+                        </div>
+                        
                     </Components.Popover> 
+                    
                 }
             </Element.Fragment>
         );
     }
 }
 
-export default {
-    title: 'Enlighter Inline Sourcecode',
-    tagName: 'code',
-    className: 'EnlighterJSRAW',
-    edit: EnlighterInlineCodeEdit,
-    attributes: {
-        language: 'data-enlighter-language'
-    }
-};
