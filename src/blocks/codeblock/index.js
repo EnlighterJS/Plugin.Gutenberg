@@ -3,7 +3,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 // --
-// Copyright 2018 Andi Dittrich <https://andidittrich.de>
+// Copyright 2018-2020 Andi Dittrich <https://andidittrich.de>
 // ----------------------------------------------------------------------
 
 import _edit from './edit';
@@ -40,11 +40,6 @@ export default {
         html: false
     },
 
-    // handle deprecated blocks (previous plugin version)
-    // @see https://wordpress.org/gutenberg/handbook/block-api/deprecated-blocks/
-    deprecated: [
-    ],
-
     // show editing ui
     edit: _edit,
 
@@ -55,6 +50,9 @@ export default {
 
         // generate css class list
         const cssClasses = 'EnlighterJSRAW' + (className ? ' ' + className : '');
+
+        // escape content if exist
+        const content = attributes.content ? EscapeHtml.escapeEditableHTML(attributes.content) : null;
 
         // add enlighterjs related attributes
         return <pre 
@@ -67,7 +65,7 @@ export default {
             data-enlighter-title={attributes.title}
             data-enlighter-group={attributes.group}
             >
-            { EscapeHtml.escapeEditableHTML(attributes.content) }
+            { content }
             </pre>;
     }
 };
