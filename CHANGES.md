@@ -1,5 +1,9 @@
 ## Branch 1.x ##
 
+### 1.1.1 ###
+
+* Bugfix: Gutenberg `escapeEditableHTML` throws an error in case the block is empty (attributes.content returns `null`)
+
 ### 1.1.0 ###
 
 * Added: inline highlighting support (RichText format)
