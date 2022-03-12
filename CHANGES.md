@@ -1,5 +1,10 @@
 ## Branch 1.x ##
 
+### 1.1.2 ###
+
+* Bugfix: Gutenberg inline editing not working on Safari due to required `rangeCount` call - thanks to [phruse on GitHub](https://github.com/EnlighterJS/Plugin.Gutenberg/issues/36)
+
+
 ### 1.1.1 ###
 
 * Bugfix: Gutenberg `escapeEditableHTML` throws an error in case the block is empty (attributes.content returns `null`)

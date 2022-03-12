@@ -15,6 +15,7 @@ export default class EnlighterInlineCodeEdit extends Element.Component{
     }
 
     // format block
+    // eslint-disable-next-line class-methods-use-this
     createFormat(lang){
         return { 
             type: 'enlighter/richtext-inline',
@@ -46,7 +47,7 @@ export default class EnlighterInlineCodeEdit extends Element.Component{
 
         // try to get range as reference
         const sel = this.props.isActive && window.getSelection();
-        const anchorRef = sel && sel.getRangeAt(0);
+        const anchorRef = sel && sel.rangeCount > 0 && sel.getRangeAt(0);
 
         // try to get language attribute
         const currentLanguage = this.props.activeAttributes.language || 'generic';
