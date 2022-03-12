@@ -1,9 +1,11 @@
 ## Branch 1.x ##
 
-### 1.1.2 ###
+### 1.2.0 ###
 
+* Added: Gutenberg left-align-indentation formatting button
 * Bugfix: Gutenberg inline editing not working on Safari due to required `rangeCount` call - thanks to [phruse on GitHub](https://github.com/EnlighterJS/Plugin.Gutenberg/issues/36)
-
+* Bugfix: Gutenberg inline popover window content is collapsed in recent Gutenberg releases
+* Bugfix: Gutenberg editor deprecation warnings related to Toolbar elements
 
 ### 1.1.1 ###
 

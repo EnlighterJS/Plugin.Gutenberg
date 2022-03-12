@@ -6,7 +6,7 @@
 // Copyright 2018 Andi Dittrich <https://andidittrich.de>
 // ----------------------------------------------------------------------
 
-import {Editor} from '../wp';
+import {BlockEditor} from '../wp';
 
 // alias
-export default Editor.PlainText;
+export default BlockEditor.PlainText;

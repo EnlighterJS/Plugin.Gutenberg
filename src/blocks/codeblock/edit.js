@@ -6,9 +6,10 @@
 // Copyright 2018 Andi Dittrich <https://andidittrich.de>
 // ----------------------------------------------------------------------
 
-import {Editor, Components, Element} from '../../wp';
+import {BlockEditor, Components, Element} from '../../wp';
 import _TextEditor from '../../components/TextEditor';
 import _LanguageMenu from '../../components/blockcontrols/LanguageMenu';
+import _LeftAlignIndentation from '../../components/blockcontrols/LeftAlignIndentationFilter';
 import _LanguageSelect from '../../components/inspectorcontrols/LanguageSelect';
 import _ThemeSelect from '../../components/inspectorcontrols/ThemeSelect';
 import {getLanguageLabel} from '../../languages';
@@ -19,14 +20,18 @@ export default function edit({attributes, setAttributes}){
     // use standard Gutenberg PlainText View with custom styles
     return <Element.Fragment>
 
-        <Editor.BlockControls>
-            <Components.Toolbar>
+        <BlockEditor.BlockControls>
+            <Components.ToolbarGroup>
                 <_LanguageMenu 
                     value={attributes.language} 
                     onChange={(language) => setAttributes({language})}
                 />
-            </Components.Toolbar>
-        </Editor.BlockControls>
+                <_LeftAlignIndentation 
+                    value={attributes.content}
+                    onChange={(content) => setAttributes({content})}
+                />
+            </Components.ToolbarGroup>
+        </BlockEditor.BlockControls>
 
         <div className="enlighter-block-wrapper">
             <div className="enlighter-header">
@@ -43,7 +48,7 @@ export default function edit({attributes, setAttributes}){
             </div>
         </div>
 
-        <Editor.InspectorControls>
+        <BlockEditor.InspectorControls>
             <Components.PanelBody title="Appearance" icon="admin-appearance">
                 <p>Override the global plugin settings of the current block.</p>
                 <_LanguageSelect 
@@ -93,7 +98,7 @@ export default function edit({attributes, setAttributes}){
                     placeholder="mygroup-1"
                 />
             </Components.PanelBody>
-        </Editor.InspectorControls>
+        </BlockEditor.InspectorControls>
 
     </Element.Fragment>
     ;

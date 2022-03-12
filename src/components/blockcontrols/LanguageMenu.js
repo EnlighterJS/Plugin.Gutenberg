@@ -33,7 +33,7 @@ export default function LanguageMenu({onChange, value}){
     });
 
     // create dropdown menu
-    return <Components.DropdownMenu
+    return <Components.ToolbarDropdownMenu
         className="enlighter-dropdownmenu"
         icon="editor-paste-text"
         label="Select Language"
