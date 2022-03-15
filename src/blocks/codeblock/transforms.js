@@ -68,6 +68,21 @@ export default {
             transform: function ({content}) {
                 return Blocks.createBlock('enlighter/codeblock', {content});
             },
+        },
+
+        // allow transform from syntaxhighlighter/code block
+        // <!-- wp:syntaxhighlighter/code {"language":"php","firstLineNumber":"25","highlightLines":"25-30"} -->
+        {
+            type: 'block',
+            blocks: ['syntaxhighlighter/code'],
+            transform: function ({content, language, firstLineNumber, highlightLines}){
+                return Blocks.createBlock('enlighter/codeblock', {
+                    content: content,
+                    language: language,
+                    lineoffset: firstLineNumber,
+                    highlight: highlightLines
+                });
+            },
         }
     ],
 
