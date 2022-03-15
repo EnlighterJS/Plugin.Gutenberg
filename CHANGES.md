@@ -4,6 +4,7 @@
 
 * Added: Gutenberg left-align-indentation formatting button
 * Added: block transformation from SyntaxHighlighter Evolved
+* Added: selected language as button text to the block toolbar
 * Bugfix: Gutenberg inline editing not working on Safari due to required `rangeCount` call - thanks to [phruse on GitHub](https://github.com/EnlighterJS/Plugin.Gutenberg/issues/36)
 * Bugfix: Gutenberg inline popover window content is collapsed in recent Gutenberg releases
 * Bugfix: Gutenberg editor deprecation warnings related to Toolbar elements

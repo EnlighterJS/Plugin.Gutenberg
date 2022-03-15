@@ -26,11 +26,14 @@ export default function edit({attributes, setAttributes}){
                     value={attributes.language} 
                     onChange={(language) => setAttributes({language})}
                 />
+            </Components.ToolbarGroup>
+            <Components.ToolbarGroup>
                 <_LeftAlignIndentation 
                     value={attributes.content}
                     onChange={(content) => setAttributes({content})}
                 />
             </Components.ToolbarGroup>
+            
         </BlockEditor.BlockControls>
 
         <div className="enlighter-block-wrapper">

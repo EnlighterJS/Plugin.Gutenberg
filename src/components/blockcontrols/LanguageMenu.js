@@ -15,11 +15,19 @@ export default function LanguageMenu({onChange, value}){
     // get language list
     const languages = getLanguages();
 
+    // current/active label
+    let activeLabel = "default";
+
     // generate dropdown list
     const languageItemList = Object.keys(languages).map(key => {
 
         // extract language label
         const label = languages[key];
+
+        // active ?
+        if (value === key){
+            activeLabel = label;
+        }
 
         return {
             title: label,
@@ -36,7 +44,8 @@ export default function LanguageMenu({onChange, value}){
     return <Components.ToolbarDropdownMenu
         className="enlighter-dropdownmenu"
         icon="editor-paste-text"
-        label="Select Language"
+        label="Select language"
+        text={activeLabel}
         controls={languageItemList}
     />
 }
